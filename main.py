@@ -12,7 +12,7 @@ def read_csv_direct(file_name):
 
 
 def data_sanitize(filename):
-    df = pd.read_csv(filename, keep_default_na=False, dtype=str)
+    df = pd.read_csv(filename, keep_default_na=False, parse_dates=True, dtype=str)
     for index, row in df.iterrows():
         if (index == 0):
             continue
@@ -26,7 +26,7 @@ def data_sanitize(filename):
 
 
 def data_sanitize_xlsx(filename):
-    df = pd.read_excel(filename, keep_default_na=False, dtype=str)
+    df = pd.read_excel(filename, keep_default_na=False, parse_dates=True, dtype=str)
     for index, row in df.iterrows():
         if (index == 0):
             continue
@@ -75,6 +75,7 @@ if not os.path.exists(output_folder):
 while os.path.exists(output_folder+"\\"+new_guess):
     guess_counter += 1
     new_guess = current_time + "_" + str(guess_counter) + ".xlsx"
+
 
 data_ran.to_excel(output_folder+"\\"+new_guess, encoding="utf-8", index=False)
 

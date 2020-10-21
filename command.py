@@ -3,6 +3,8 @@ import pandas as pd
 import math
 from datetime import datetime
 import os
+import re
+from korean_romanizer.romanizer import Romanizer
 
 class Static:
     input_df = pd.DataFrame()
@@ -46,6 +48,8 @@ class Command(Enum):
     PRIMITIVE = 8
     TIME = 9
     OPER = 10
+    REPLACE = 11
+    ROMANIZE = 12
 
 
 class CommandTree:
@@ -165,9 +169,8 @@ class CommandTableLoad(CommandTree):
         return None
 
 
-
 # SEARCH <TABLE_NAME> <KEY>
-# Note, it trims of end for search in table. (quick fix, will be replaced later.)
+# Note, if no match, it returns the key.
 # TODO: make if statement to make ignore possible
 class CommandTableSearch(CommandTree):
     table_name = None
@@ -184,7 +187,12 @@ class CommandTableSearch(CommandTree):
     def execute(self, row_num: int):
         table_in_question = Static.lookup_table[self.table_name]
         executed_results = self.table_key.execute(row_num)
-        answer = table_in_question[executed_results.strip()]
+        key = executed_results.strip()
+        answer = None
+        if key in table_in_question:
+            answer = table_in_question[key]
+        else:
+            answer = key
         return answer
 
 
@@ -220,6 +228,7 @@ class CommandPrimitive(CommandTree):
     def execute(self, row_num: int):
         return str(self.data)
 
+
 # TIME <TIMEFORMAT>
 class CommandTime(CommandTree):
     time_format = None
@@ -233,6 +242,7 @@ class CommandTime(CommandTree):
 
     def execute(self, row_num: int):
         return datetime.now().strftime(self.time_format)
+
 
 # OPER <OPERATION> <FRONT> <BACK>
 class CommandOperation(CommandTree):
@@ -253,12 +263,12 @@ class CommandOperation(CommandTree):
         front_ans = None
         back_ans = None
         try:
-            front_ans = int(front_res)
+            front_ans = float(front_res)
         except ValueError:
             print("Runtime Error: "+front_res+" cannot be converted to int")
             exit(3)
         try:
-            back_ans = int(back_res)
+            back_ans = float(back_res)
         except ValueError:
             print("Runtime Error: "+back_res+" cannot be converted to int")
             exit(3)
@@ -274,3 +284,42 @@ class CommandOperation(CommandTree):
         else:
             print("Runtime Error: " + self.operation + " operator is not implemented")
             exit(3)
+
+
+# REPLACE <FROM> <TO> <ORIGIN>
+class CommandReplace(CommandTree):
+    instruction = Command.REPLACE
+    origin = None
+
+    def __init__(self, search, to, origin):
+        self.left = search
+        self.right = to
+        self.origin = origin
+
+    def is_returning(self):
+        return True
+
+    def execute(self, row_num: int):
+        front_res = self.left.execute(row_num)
+        back_res = self.right.execute(row_num)
+        origin_res = self.origin.execute(row_num)
+        origin_res = re.sub(pattern=front_res, repl=back_res, string=origin_res)
+        return origin_res
+
+
+# ROMANIZE <KOREAN>
+class CommandRomanize(CommandTree):
+    instruction = Command.ROMANIZE
+
+    def __init__(self, korean):
+        self.right = korean
+
+    def is_returning(self):
+        return True
+
+    def execute(self, row_num: int):
+        back_res = self.right.execute(row_num)
+        romanizer = Romanizer(back_res)
+        origin_res = romanizer.romanize()
+        return origin_res
+
