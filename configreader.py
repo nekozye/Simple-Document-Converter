@@ -1,8 +1,11 @@
 import command
 import pandas as pd
+import re
+from datetime import datetime
 
-special_words = ['WRITE', 'READ', 'LET', 'GET', 'LOAD', 'SEARCH', 'CONCAT', 'PRIMITIVE', 'TIME', 'OPER', 'REPLACE']
-returning_words = ['READ', 'GET', 'SEARCH', 'CONCAT', 'PRIMITIVE', 'TIME', 'OPER', 'REPLACE']
+special_words = ['WRITE', 'READ', 'LET', 'GET', 'LOAD', 'SEARCH', 'CONCAT', 'PRIMITIVE', 'TIME', 'OPER', 'REPLACE', 'ROMANIZE']
+returning_words = ['READ', 'GET', 'SEARCH', 'CONCAT', 'PRIMITIVE', 'TIME', 'OPER', 'REPLACE', 'ROMANIZE']
+
 
 def read_configuration(filename):
     counter = 0
@@ -78,7 +81,6 @@ def custom_space_split(line):
     return words
 
 
-
 def line_splitification (line_num, line):
     splited_words = custom_space_split(line)
 
@@ -91,7 +93,6 @@ def line_splitification (line_num, line):
     table_name = None
     table_key = None
     string = None
-
 
     while point_counter >= 0:
         checking_current = splited_words[point_counter]
@@ -156,6 +157,9 @@ def line_splitification (line_num, line):
                 origin = stack.pop()
 
                 stack.append(command.CommandReplace(search, to, origin))
+            elif checking_current == 'ROMANIZE':
+                korean = stack.pop()
+                stack.append(command.CommandRomanize(korean))
         else:
             stack.append(checking_current)
 
@@ -163,17 +167,30 @@ def line_splitification (line_num, line):
 
     return stack[0]
 
+
 def load_csv_direct(file_name):
     df = pd.read_csv(file_name, keep_default_na=False, dtype=str)
-    df.astype('string')
+    for column in df.columns:
+        df.loc[:, column] = df[column].apply(custom_astype_string)
+    df.astype(str)
     command.Static.reset_static()
     command.Static.input_df = df
 
 def load_excel_direct(file_name):
     df = pd.read_excel(file_name, keep_default_na=False, dtype=str)
-    df.astype('string')
+    for column in df.columns:
+        df.loc[:, column] = df[column].apply(custom_astype_string)
+    df.astype(str)
     command.Static.reset_static()
     command.Static.input_df = df
+
+def custom_astype_string(value):
+    if re.match("[0-9][0-9][0-9][0-9]-[0-9]?[0-9]-[0-9]?[0-9] [0-9]?[0-9]:[0-9]?[0-9]:[0-9]?[0-9] -[0-9][0-9][0-9][0-9]", value):
+        dt_object = datetime.strptime(value, '%Y-%m-%d %H:%M:%S %z')
+        dt_out = dt_object.strftime("%m/%d/%Y %H:%M:%S")
+        return str(dt_out)
+    else:
+        return str(value)
 
 
 def run_cfr(config_path, data_path):
@@ -185,7 +202,6 @@ def run_cfr(config_path, data_path):
         load_excel_direct(data_path)
     else:
         exit(2)
-
 
     for rownum in range(0, len(command.Static.input_df)):
         for i in range(0, len(cong)):
