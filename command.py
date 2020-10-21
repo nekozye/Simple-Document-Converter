@@ -46,6 +46,7 @@ class Command(Enum):
     PRIMITIVE = 8
     TIME = 9
     OPER = 10
+    REPLACE = 11
 
 
 class CommandTree:
@@ -274,3 +275,24 @@ class CommandOperation(CommandTree):
         else:
             print("Runtime Error: " + self.operation + " operator is not implemented")
             exit(3)
+
+# REPLACE <FROM> <TO> <ORIGIN>
+class CommandReplace(CommandTree):
+    instruction = Command.REPLACE
+    origin = None
+
+    def __init__(self, search, to, origin):
+        self.left = search
+        self.right = to
+        self.origin = origin
+
+    def is_returning(self):
+        return True
+
+    def execute(self, row_num: int):
+        front_res = self.left.execute(row_num)
+        back_res = self.right.execute(row_num)
+        origin_res = self.origin.execute(row_num)
+        origin_res = origin_res.replace(front_res, back_res)
+        return origin_res
+

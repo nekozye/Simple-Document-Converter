@@ -1,8 +1,8 @@
 import command
 import pandas as pd
 
-special_words = ['WRITE', 'READ', 'LET', 'GET', 'LOAD', 'SEARCH', 'CONCAT', 'PRIMITIVE', 'TIME', 'OPER']
-returning_words = ['READ', 'GET', 'SEARCH', 'CONCAT', 'PRIMITIVE', 'TIME', 'OPER']
+special_words = ['WRITE', 'READ', 'LET', 'GET', 'LOAD', 'SEARCH', 'CONCAT', 'PRIMITIVE', 'TIME', 'OPER', 'REPLACE']
+returning_words = ['READ', 'GET', 'SEARCH', 'CONCAT', 'PRIMITIVE', 'TIME', 'OPER', 'REPLACE']
 
 def read_configuration(filename):
     counter = 0
@@ -150,6 +150,12 @@ def line_splitification (line_num, line):
                 right_side = stack.pop()
 
                 stack.append(command.CommandOperation(left_side, right_side, operation))
+            elif checking_current == 'REPLACE':
+                search = stack.pop()
+                to = stack.pop()
+                origin = stack.pop()
+
+                stack.append(command.CommandReplace(search, to, origin))
         else:
             stack.append(checking_current)
 
