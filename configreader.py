@@ -3,8 +3,8 @@ import pandas as pd
 import re
 from datetime import datetime
 
-special_words = ['WRITE', 'READ', 'LET', 'GET', 'LOAD', 'SEARCH', 'CONCAT', 'PRIMITIVE', 'TIME', 'OPER', 'REPLACE', 'ROMANIZE']
-returning_words = ['READ', 'GET', 'SEARCH', 'CONCAT', 'PRIMITIVE', 'TIME', 'OPER', 'REPLACE', 'ROMANIZE']
+special_words = ['WRITE', 'READ', 'LET', 'GET', 'LOAD', 'SEARCH', 'CONCAT', 'PRIMITIVE', 'TIME', 'OPER', 'REPLACE', 'ROMANIZE', 'NAMEFLIP']
+returning_words = ['READ', 'GET', 'SEARCH', 'CONCAT', 'PRIMITIVE', 'TIME', 'OPER', 'REPLACE', 'ROMANIZE', 'NAMEFLIP']
 
 
 def read_configuration(filename):
@@ -160,6 +160,9 @@ def line_splitification (line_num, line):
             elif checking_current == 'ROMANIZE':
                 korean = stack.pop()
                 stack.append(command.CommandRomanize(korean))
+            elif checking_current == 'NAMEFLIP':
+                name = stack.pop()
+                stack.append(command.CommandNameFlip(name))
         else:
             stack.append(checking_current)
 

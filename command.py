@@ -50,6 +50,7 @@ class Command(Enum):
     OPER = 10
     REPLACE = 11
     ROMANIZE = 12
+    NAMEFLIP = 13
 
 
 class CommandTree:
@@ -322,4 +323,21 @@ class CommandRomanize(CommandTree):
         romanizer = Romanizer(back_res)
         origin_res = romanizer.romanize()
         return origin_res
+
+# NAMEFLIP <NAME>
+class CommandNameFlip(CommandTree):
+    instruction = Command.NAMEFLIP
+
+    def __init__(self, name):
+        self.right = name
+
+    def is_returning(self):
+        return True
+
+    def execute(self, row_num: int):
+        back_res = self.right.execute(row_num)
+        split = back_res.split(str=' ')
+        origin_res = split[1]+split[0]
+        return origin_res
+
 
