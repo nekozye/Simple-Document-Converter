@@ -5670,7 +5670,7 @@
  [],
  False,
  False,
- 1603326620,
+ 1603462498,
  [('run.exe',
    'd:\\pycharmprojects\\simple document '
    'cutter\\venv\\lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit\\run.exe',
