@@ -337,7 +337,8 @@ class CommandNameFlip(CommandTree):
     def execute(self, row_num: int):
         back_res = self.right.execute(row_num)
         split = back_res.split()
-        origin_res = split[1]+split[0]
+        origin_res = split[-1]
+        o
         return origin_res
 
 
