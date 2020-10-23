@@ -11,34 +11,6 @@ def read_csv_direct(file_name):
     return file
 
 
-def data_sanitize(filename):
-    df = pd.read_csv(filename, keep_default_na=False, parse_dates=True, dtype=str)
-    for index, row in df.iterrows():
-        if (index == 0):
-            continue
-        for c_index, column in df.iteritems():
-            if str(df.at[index, c_index]) == "":
-                df.at[index, c_index] = str(df.at[index - 1, c_index])
-    moded_file = filename.replace(".csv", "")
-    df.astype('string')
-    df.to_csv(moded_file + "_copy.csv", encoding="utf-8", index=False)
-    return moded_file + "_copy.csv"
-
-
-def data_sanitize_xlsx(filename):
-    df = pd.read_excel(filename, keep_default_na=False, parse_dates=True, dtype=str)
-    for index, row in df.iterrows():
-        if (index == 0):
-            continue
-        for c_index, column in df.iteritems():
-            if str(df.at[index, c_index]) == "":
-                df.at[index, c_index] = str(df.at[index - 1, c_index])
-    moded_file = filename.replace(".xlsx", "")
-    df.astype('string')
-    df.to_excel(moded_file + "_copy.xlsx", encoding="utf-8", index=False)
-    return moded_file + "_copy.xlsx"
-
-
 root = tk.Tk()
 root.withdraw()
 
@@ -51,16 +23,8 @@ file_path = filedialog.askopenfilename(title="Please select input data", filetyp
 if conf_path == '' or file_path == '':
     exit(2)
 
-new_path = None
 
-if file_path.endswith(".csv"):
-    new_path = data_sanitize(file_path)
-elif file_path.endswith(".xlsx"):
-    new_path = data_sanitize_xlsx(file_path)
-else:
-    exit(2)
-
-data_ran = configreader.run_cfr(conf_path, new_path)
+data_ran = configreader.run_cfr(conf_path, file_path)
 
 current_time = datetime.now().strftime("%Y_%m%d")
 
@@ -78,5 +42,3 @@ while os.path.exists(output_folder+"\\"+new_guess):
 
 
 data_ran.to_excel(output_folder+"\\"+new_guess, encoding="utf-8", index=False)
-
-os.remove(new_path)
