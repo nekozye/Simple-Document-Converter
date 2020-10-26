@@ -3,8 +3,8 @@ import pandas as pd
 import re
 from datetime import datetime
 
-special_words = ['WRITE', 'READ', 'LET', 'GET', 'LOAD', 'SEARCH', 'CONCAT', 'PRIMITIVE', 'TIME', 'OPER', 'REPLACE', 'ROMANIZE', 'NAMEFLIP']
-returning_words = ['READ', 'GET', 'SEARCH', 'CONCAT', 'PRIMITIVE', 'TIME', 'OPER', 'REPLACE', 'ROMANIZE', 'NAMEFLIP']
+special_words = ['WRITE', 'READ', 'LET', 'GET', 'LOAD', 'SEARCH', 'CONCAT', 'PRIMITIVE', 'TIME', 'OPER', 'REPLACE', 'ROMANIZE', 'NAMEFLIP', 'CUT']
+returning_words = ['READ', 'GET', 'SEARCH', 'CONCAT', 'PRIMITIVE', 'TIME', 'OPER', 'REPLACE', 'ROMANIZE', 'NAMEFLIP', 'CUT']
 
 
 def read_configuration(filename):
@@ -163,6 +163,11 @@ def line_splitification (line_num, line):
             elif checking_current == 'NAMEFLIP':
                 name = stack.pop()
                 stack.append(command.CommandNameFlip(name))
+            elif checking_current == 'CUT':
+                indexstart = stack.pop()
+                indexend = stack.pop()
+                actual = stack.pop()
+                stack.append(command.CommandCut(indexstart, indexend, actual))
         else:
             stack.append(checking_current)
 

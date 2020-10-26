@@ -51,6 +51,7 @@ class Command(Enum):
     REPLACE = 11
     ROMANIZE = 12
     NAMEFLIP = 13
+    CUT = 14
 
 
 class CommandTree:
@@ -336,9 +337,52 @@ class CommandNameFlip(CommandTree):
 
     def execute(self, row_num: int):
         back_res = self.right.execute(row_num)
+        regexp = re.compile("[a-zA-Z]")
+        if regexp.search(back_res):
+            return back_res
         split = back_res.split()
-        origin_res = split[-1]
-        o
+        origin_res = split.pop()
+        separate = " "
+
+        addun_res = separate.join(split)
+        origin_res = origin_res + addun_res
+
         return origin_res
+
+
+# CUT <IndexCutoutStart> <IndexCutoutEnd> <ORIGIN>
+class CommandCut(CommandTree):
+    instruction = Command.CUT
+
+    startInd = None
+    endInd = None
+
+    def __init__(self, start, end, origin):
+        self.startInd = int(start)
+        self.endInd = int(end)
+        self.right = origin
+
+        if self.startInd is not int or self.endInd is not int:
+            print("Runtime Error: Cut command needs numerical values for limits")
+            exit(3)
+
+    def is_returning(self):
+        return True
+
+    def execute(self, row_num: int):
+
+        string_in_question = self.right.execute(row_num)
+        if self.startInd < 0:
+            self.startInd = 0
+        if self.endInd >= len(string_in_question):
+            self.endInd = len(string_in_question) - 1
+
+        string_answer = string_in_question[self.startInd:self.endInd]
+
+        return string_answer
+
+
+
+
 
 

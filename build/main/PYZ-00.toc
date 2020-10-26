@@ -3,9 +3,9 @@
    'd:\\pycharmprojects\\simple document '
    'cutter\\venv\\lib\\site-packages\\pkg_resources\\__init__.py',
    'PYMODULE'),
-  ('pkg_resources._vendor.packaging._compat',
+  ('pkg_resources._vendor.packaging.version',
    'd:\\pycharmprojects\\simple document '
-   'cutter\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_compat.py',
+   'cutter\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\version.py',
    'PYMODULE'),
   ('typing',
    'C:\\Users\\mandu\\AppData\\Local\\Programs\\Python\\Python38\\lib\\typing.py',
@@ -15,6 +15,14 @@
    'PYMODULE'),
   ('__future__',
    'C:\\Users\\mandu\\AppData\\Local\\Programs\\Python\\Python38\\lib\\__future__.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor',
+   'd:\\pycharmprojects\\simple document '
+   'cutter\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\__init__.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging._structures',
+   'd:\\pycharmprojects\\simple document '
+   'cutter\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_structures.py',
    'PYMODULE'),
   ('pkg_resources._vendor.pyparsing',
    'd:\\pycharmprojects\\simple document '
@@ -722,53 +730,45 @@
   ('string',
    'C:\\Users\\mandu\\AppData\\Local\\Programs\\Python\\Python38\\lib\\string.py',
    'PYMODULE'),
-  ('pkg_resources._vendor.packaging._structures',
+  ('pkg_resources._vendor.packaging.utils',
    'd:\\pycharmprojects\\simple document '
-   'cutter\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_structures.py',
+   'cutter\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\utils.py',
    'PYMODULE'),
-  ('pkg_resources._vendor.packaging.requirements',
+  ('pkg_resources._vendor.packaging._compat',
    'd:\\pycharmprojects\\simple document '
-   'cutter\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\requirements.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.packaging.version',
-   'd:\\pycharmprojects\\simple document '
-   'cutter\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\version.py',
+   'cutter\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_compat.py',
    'PYMODULE'),
   ('pkg_resources._vendor.packaging.tags',
    'd:\\pycharmprojects\\simple document '
    'cutter\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\tags.py',
    'PYMODULE'),
+  ('pkg_resources._vendor.packaging.requirements',
+   'd:\\pycharmprojects\\simple document '
+   'cutter\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\requirements.py',
+   'PYMODULE'),
   ('pkg_resources._vendor.packaging.specifiers',
    'd:\\pycharmprojects\\simple document '
    'cutter\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\specifiers.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.appdirs',
-   'd:\\pycharmprojects\\simple document '
-   'cutter\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\appdirs.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.packaging.markers',
-   'd:\\pycharmprojects\\simple document '
-   'cutter\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\markers.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.packaging.utils',
-   'd:\\pycharmprojects\\simple document '
-   'cutter\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\utils.py',
    'PYMODULE'),
   ('pkg_resources._vendor.packaging._typing',
    'd:\\pycharmprojects\\simple document '
    'cutter\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_typing.py',
    'PYMODULE'),
-  ('pkg_resources._vendor',
+  ('pkg_resources._vendor.packaging.__about__',
    'd:\\pycharmprojects\\simple document '
-   'cutter\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\__init__.py',
+   'cutter\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\__about__.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging.markers',
+   'd:\\pycharmprojects\\simple document '
+   'cutter\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\markers.py',
    'PYMODULE'),
   ('pkg_resources._vendor.packaging',
    'd:\\pycharmprojects\\simple document '
    'cutter\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\__init__.py',
    'PYMODULE'),
-  ('pkg_resources._vendor.packaging.__about__',
+  ('pkg_resources._vendor.appdirs',
    'd:\\pycharmprojects\\simple document '
-   'cutter\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\__about__.py',
+   'cutter\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\appdirs.py',
    'PYMODULE'),
   ('sysconfig',
    'C:\\Users\\mandu\\AppData\\Local\\Programs\\Python\\Python38\\lib\\sysconfig.py',
@@ -1047,45 +1047,37 @@
    'd:\\pycharmprojects\\simple document '
    'cutter\\venv\\lib\\site-packages\\setuptools\\__init__.py',
    'PYMODULE'),
-  ('setuptools._vendor.packaging.specifiers',
+  ('setuptools._vendor.packaging.__about__',
    'd:\\pycharmprojects\\simple document '
-   'cutter\\venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\specifiers.py',
-   'PYMODULE'),
-  ('setuptools._vendor',
-   'd:\\pycharmprojects\\simple document '
-   'cutter\\venv\\lib\\site-packages\\setuptools\\_vendor\\__init__.py',
+   'cutter\\venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\__about__.py',
    'PYMODULE'),
   ('setuptools._vendor.packaging._structures',
    'd:\\pycharmprojects\\simple document '
    'cutter\\venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\_structures.py',
    'PYMODULE'),
-  ('setuptools._vendor.packaging.requirements',
-   'd:\\pycharmprojects\\simple document '
-   'cutter\\venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\requirements.py',
-   'PYMODULE'),
-  ('setuptools._vendor.packaging',
-   'd:\\pycharmprojects\\simple document '
-   'cutter\\venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\__init__.py',
-   'PYMODULE'),
   ('setuptools._vendor.pyparsing',
    'd:\\pycharmprojects\\simple document '
    'cutter\\venv\\lib\\site-packages\\setuptools\\_vendor\\pyparsing.py',
-   'PYMODULE'),
-  ('setuptools._vendor.ordered_set',
-   'd:\\pycharmprojects\\simple document '
-   'cutter\\venv\\lib\\site-packages\\setuptools\\_vendor\\ordered_set.py',
    'PYMODULE'),
   ('setuptools._vendor.packaging.markers',
    'd:\\pycharmprojects\\simple document '
    'cutter\\venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\markers.py',
    'PYMODULE'),
-  ('setuptools._vendor.packaging.__about__',
+  ('setuptools._vendor.ordered_set',
    'd:\\pycharmprojects\\simple document '
-   'cutter\\venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\__about__.py',
+   'cutter\\venv\\lib\\site-packages\\setuptools\\_vendor\\ordered_set.py',
    'PYMODULE'),
-  ('setuptools._vendor.packaging._compat',
+  ('setuptools._vendor.packaging.tags',
    'd:\\pycharmprojects\\simple document '
-   'cutter\\venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\_compat.py',
+   'cutter\\venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\tags.py',
+   'PYMODULE'),
+  ('setuptools._vendor.packaging',
+   'd:\\pycharmprojects\\simple document '
+   'cutter\\venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\__init__.py',
+   'PYMODULE'),
+  ('setuptools._vendor.packaging._typing',
+   'd:\\pycharmprojects\\simple document '
+   'cutter\\venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\_typing.py',
    'PYMODULE'),
   ('setuptools._vendor.packaging.version',
    'd:\\pycharmprojects\\simple document '
@@ -1095,13 +1087,21 @@
    'd:\\pycharmprojects\\simple document '
    'cutter\\venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\utils.py',
    'PYMODULE'),
-  ('setuptools._vendor.packaging.tags',
+  ('setuptools._vendor.packaging._compat',
    'd:\\pycharmprojects\\simple document '
-   'cutter\\venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\tags.py',
+   'cutter\\venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\_compat.py',
    'PYMODULE'),
-  ('setuptools._vendor.packaging._typing',
+  ('setuptools._vendor',
    'd:\\pycharmprojects\\simple document '
-   'cutter\\venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\_typing.py',
+   'cutter\\venv\\lib\\site-packages\\setuptools\\_vendor\\__init__.py',
+   'PYMODULE'),
+  ('setuptools._vendor.packaging.specifiers',
+   'd:\\pycharmprojects\\simple document '
+   'cutter\\venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\specifiers.py',
+   'PYMODULE'),
+  ('setuptools._vendor.packaging.requirements',
+   'd:\\pycharmprojects\\simple document '
+   'cutter\\venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\requirements.py',
    'PYMODULE'),
   ('setuptools.msvc',
    'd:\\pycharmprojects\\simple document '
